@@ -1,0 +1,33 @@
+{
+  "name": "@jryang1997/dsh-plugin-kit",
+  "version": "1.0.0",
+  "description": "Zero-dependency verification, packaging and scaffolding toolkit for DeepSeek Harness plugins.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "bin": {
+    "dsh-plugin-kit": "./bin/dsh-plugin-kit.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./config": "./src/config.mjs",
+    "./checks": "./src/checks/index.mjs",
+    "./runner": "./src/runner.mjs",
+    "./artifacts": "./src/artifacts.mjs",
+    "./review": "./src/review.mjs",
+    "./probe": "./src/probe.mjs",
+    "./scaffold": "./src/scaffold.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --test"
+  }
+}
