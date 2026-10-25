@@ -28,7 +28,10 @@ test('a missing file is reported with its error code', async () => {
 
 test('paths outside the root are rejected without being read', async () => {
   const root = await tempDir();
-  const outside = await readProbe({ root, paths: ['../escape.txt', 'C:/Windows/win.ini'] });
+  // A Windows drive path is only absolute on Windows; use each platform's own
+  // absolute escape so the rejection is the outside-root guard, not ENOENT.
+  const escapes = ['../escape.txt', process.platform === 'win32' ? 'C:/Windows/win.ini' : '/etc/passwd'];
+  const outside = await readProbe({ root, paths: escapes });
   for (const file of outside.files) {
     assert.equal(file.readable, false);
     assert.equal(file.error, 'OUTSIDE_ROOT');
